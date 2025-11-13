@@ -17,7 +17,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   alwaysShowMask?: boolean;
   showMask?: boolean;
   onChange?: (e: React.SyntheticEvent) => void;
-  onKeyDown?: (e: React.SyntheticEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onValueChange?: (params: { maskedValue: string; value: string }) => void;
   getReference?: (el: HTMLInputElement) => void;
   onFocus?: (e: React.FocusEvent) => void;
@@ -167,7 +167,7 @@ function MaskInput(props: IInputProps) {
   React.useEffect(() => {
     if (!firstRender.current) {
       // @ts-ignore
-      input.setValue(props.value);
+      input.setValue(props.value || '');
     }
   }, [props.value]);
 

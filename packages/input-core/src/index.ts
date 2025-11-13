@@ -102,8 +102,10 @@ export const createInput = (params: IInputParams): IMaskedInput => {
           dataList = data;
         } else {
           dataList = [];
-          for (let i = 0; i < data.length; i++) {
-            dataList.push({ char: data[i], type: CharTypes.USER });
+          if (data?.length) {
+            for (let i = 0; i < data.length; i++) {
+              dataList.push({ char: data[i], type: CharTypes.USER });
+            }
           }
         }
         result = inputValue({ data: dataList, selection, mask, maskChar, maskString, showStartChars });
